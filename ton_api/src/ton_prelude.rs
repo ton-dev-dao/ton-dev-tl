@@ -23,7 +23,7 @@ use extfmt::Hexlify;
 use ordered_float::OrderedFloat;
 use serde_derive::{Deserialize, Serialize};
 use std::{any::type_name, fmt, hash::{Hash, Hasher}, io::{Read, Write}};
-use ever_block::error;
+use ton_dev_block::error;
 
 const MAX_BYTES_DEBUG_LEN: usize = 4;
 
@@ -79,7 +79,7 @@ macro_rules! impl_byteslike {
 pub struct int128(pub [u8; 16]);
 
 /// Represents 256-bit unsigned integer.
-pub(crate) type int256 = ever_block::UInt256;
+pub(crate) type int256 = ton_dev_block::UInt256;
 
 /// Represents 512-bit unsigned integer.
 #[derive(Clone, Copy, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -526,4 +526,3 @@ pub type Function = TLObject;
 pub type secureBytes = crate::secure::SecureBytes;
 /// Alias of SecureString built-in type.
 pub type secureString = crate::secure::SecureString;
-                                  	

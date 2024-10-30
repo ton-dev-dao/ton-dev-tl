@@ -16,7 +16,7 @@
 use crate::{ton_prelude::TLObject, ton::ton_node::{RempMessageStatus, RempMessageLevel}};
 use std::{any::Any, fmt, hash::Hash, io::{self, Read, Write}, convert::TryFrom, sync::Arc};
 
-use ever_block::{
+use ton_dev_block::{
     fail, BlockIdExt, Ed25519KeyOption, KeyOption, MsgPackInfo, Result, ShardIdent, UInt256
 };
 
@@ -443,7 +443,7 @@ impl fmt::Display for RempMessageStatus {
 }
 
 impl TryFrom<u8> for RempMessageLevel {
-    type Error = ever_block::Error;
+    type Error = ton_dev_block::Error;
     fn try_from(value: u8) -> Result<Self> {
         Ok(match value {
             1 => RempMessageLevel::TonNode_RempCollator,
@@ -609,7 +609,7 @@ pub fn tag_from_data(data: &[u8]) -> u32 {
 }
 
 impl TryFrom<&Arc<dyn KeyOption>> for ton::PublicKey {
-    type Error = ever_block::Error;
+    type Error = ton_dev_block::Error;
     fn try_from(value: &Arc<dyn KeyOption>) -> Result<Self> {
         let key = UInt256::with_array(value.pub_key()?.try_into()?);
         let key = ton::pub_::publickey::Ed25519 { 
@@ -620,7 +620,7 @@ impl TryFrom<&Arc<dyn KeyOption>> for ton::PublicKey {
 }
 
 impl TryFrom<&ton::PublicKey> for Arc<dyn KeyOption> {
-    type Error = ever_block::Error;
+    type Error = ton_dev_block::Error;
     fn try_from(value: &ton::PublicKey) -> Result<Self> {
         match value {
             ton::PublicKey::Pub_Ed25519(key) => {

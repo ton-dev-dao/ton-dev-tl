@@ -1550,13 +1550,13 @@ impl Constructor<TypeIR, FieldIR> {
         if self.variant_name() == "BlockIdExt" {
             let tl_id = self.tl_id().unwrap();
             return quote! {
-                pub(crate) type BlockIdExt = ever_block::BlockIdExt;
+                pub(crate) type BlockIdExt = ton_dev_block::BlockIdExt;
                 pub(crate) const TL_TAG: crate::ConstructorNumber = #tl_id; 
             }
         } else if self.variant_name() == "PackInfo" {
             let tl_id = self.tl_id().unwrap();
             return quote! {
-                pub(crate) type PackInfo = ever_block::MsgPackInfo;
+                pub(crate) type PackInfo = ton_dev_block::MsgPackInfo;
                 pub(crate) const TL_TAG: crate::ConstructorNumber = #tl_id; 
             }
         }
@@ -2111,11 +2111,11 @@ impl Constructors<TypeIR, FieldIR> {
         let doc = self.as_enum_doc();
         if name == "BlockIdExt" {
             return quote! {
-                pub(crate) type BlockIdExt = ever_block::BlockIdExt;
+                pub(crate) type BlockIdExt = ton_dev_block::BlockIdExt;
             }
         } else if name == "PackInfo" {
             return quote! {
-                pub(crate) type PackInfo = ever_block::MsgPackInfo;
+                pub(crate) type PackInfo = ton_dev_block::MsgPackInfo;
             }
         }
         let mut derives = quote! { Debug, Clone, PartialEq };
